@@ -262,7 +262,7 @@ def ticker_csv_to_db(csv_path : str = "data/tickerc.csv", db_name : str = "data.
     db = DB(db_name)
     db.create_ticker_table()
     for _, row in tqdm(df.iterrows(), total=len(df)):
-        url = "https://finance.yahoo.com/quote/" + str(row["Symbol"]) + "/history"
+        url = "https://finance.yahoo.com/quote/" + str(row["Symbol"]) + "/history?p=" + str(row["Symbol"])
         db.insert_ticker(str(row["Symbol"]), str(row["Company"]), url, False)
     return db
 
